@@ -17,6 +17,7 @@ namespace EmuPack.Models.Machine
             Adaptor = new Adaptor();
             RegistredPrescriptions = new List<RegistredPrescription>();
             WarningCassettesIds = new List<string>();
+            DrawerOpened = true;
         }
 
         public void ReinitilizeState()

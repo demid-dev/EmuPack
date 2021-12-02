@@ -83,29 +83,5 @@ namespace EmuPack.Services
             string messageToReturn = _commandHandler.ExecuteCommand(MachineState, message).Response;
             return messageToReturn;
         }
-
-        public void SendMessage(CommandResponse response)
-        {
-            Console.WriteLine(response.Response);
-            MachineState.RegistredPrescriptions.ForEach(prescription =>
-            {
-                Console.WriteLine($"Id: {prescription.Id}");
-                prescription.RegistredCassettes.ForEach(cassette =>
-                {
-                    Console.WriteLine($"Cassette id: {cassette.CassetteId}");
-                    Console.WriteLine($"Drug name: {cassette.DrugName}");
-                    Console.WriteLine($"Drug quantity: {cassette.DrugQuantity}");
-                });
-                MachineState.Adaptor.DrugPack.DrugCells.ForEach(cell =>
-                {
-                    Console.WriteLine($"\n Cell {cell.CellName}");
-                    cell.DrugsInCell.ForEach(drug =>
-                    {
-                        Console.WriteLine($"Name: {drug.DrugName}; Quantity: {drug.DrugQuantity}");
-                    });
-                });
-            });
-
-        }
     }
 }

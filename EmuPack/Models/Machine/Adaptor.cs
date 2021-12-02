@@ -17,6 +17,16 @@ namespace EmuPack.Models.Machine
             AdaptorInsideMachine = true;
             DrugPack = new DrugPack();
         }
+
+        public void ChangeAdaptorState()
+        {
+            AdaptorInsideMachine = !AdaptorInsideMachine;
+        }
+
+        public void ClearDrugPack()
+        {
+            DrugPack = new DrugPack();
+        }
     }
 
     public class DrugPack
@@ -25,7 +35,21 @@ namespace EmuPack.Models.Machine
 
         public DrugPack()
         {
-            DrugCells = DrugPackValues.DrugCells;
+            DrugCells = new List<DrugCell>
+            {
+                new DrugCell("A0"), new DrugCell("A1"), new DrugCell("A2"),
+                new DrugCell("A3"), new DrugCell("A4"), new DrugCell("A5"),
+                new DrugCell("A6"),
+                new DrugCell("B0"), new DrugCell("B1"), new DrugCell("B2"),
+                new DrugCell("B3"), new DrugCell("B4"), new DrugCell("B5"),
+                new DrugCell("B6"),
+                new DrugCell("C0"), new DrugCell("C1"), new DrugCell("C2"),
+                new DrugCell("C3"), new DrugCell("C4"), new DrugCell("C5"),
+                new DrugCell("C6"),
+                new DrugCell("D0"), new DrugCell("D1"), new DrugCell("D2"),
+                new DrugCell("D3"), new DrugCell("D4"), new DrugCell("D5"),
+                new DrugCell("D6")
+            };
         }
     }
 

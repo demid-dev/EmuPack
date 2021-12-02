@@ -24,9 +24,43 @@ namespace EmuPack.Controllers
         }
 
         [HttpGet]
-        public MachineState GetMachineState()
+        public ActionResult<MachineState> GetMachineState()
         {
-            return _emulatedMachine.MachineState;
+            return Ok(_emulatedMachine.MachineState);
+        }
+
+        [HttpGet("prescriptions")]
+        public ActionResult<IEnumerable<RegistredPrescription>> GetAllRegistredPrescriptions()
+        {
+            return Ok(_emulatedMachine.MachineState.RegistredPrescriptions);
+        }
+
+        [HttpGet("adaptor")]
+        public ActionResult<Adaptor> GetAdaptorInformation()
+        {
+            return Ok(_emulatedMachine.MachineState.Adaptor);
+        }
+
+        [HttpPost("adaptor")]
+        public ActionResult ChangeAdaptorState()
+        {
+            if (!_emulatedMachine.MachineState.DrawerOpened)
+            {
+                return BadRequest("Adaptor state cannot be changed, machine drawer closed");
+            }
+            _emulatedMachine.MachineState.Adaptor.ChangeAdaptorState();
+            return Ok(_emulatedMachine.MachineState.Adaptor);
+        }
+
+        [HttpPost("pack")]
+        public ActionResult ChangeDrugPack()
+        {
+            if (!_emulatedMachine.MachineState.DrawerOpened)
+            {
+                return BadRequest("Drug pack cannot be cleared, machine drawer closed");
+            }
+            _emulatedMachine.MachineState.Adaptor.ClearDrugPack();
+            return Ok(_emulatedMachine.MachineState.Adaptor);
         }
     }
 }

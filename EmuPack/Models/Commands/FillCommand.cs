@@ -165,7 +165,7 @@ namespace EmuPack.Models.Commands
                 int cassetteId = Convert.ToInt32(cassette.CassetteID);
                 int quantityOfDrug = Convert.ToInt32(cassette.QuantityOfDrug);
                 bool validDrugsQuantity = registredPrescription.RegistredCassettes
-                    .Find(cas => cas.CassetteId == cassetteId).DrugQuantity > quantityOfDrug;
+                    .Find(cas => cas.CassetteId == cassetteId).DrugQuantity >= quantityOfDrug;
 
                 allCassettesQuantityOfDrugsValid = allCassettesQuantityOfDrugsValid && validDrugsQuantity;
 
