@@ -32,7 +32,7 @@ namespace EmuPack.Models.Commands
             Console.WriteLine("Is command valid: " + IsCommandValid);
         }
 
-        public override bool ValidateCommand(string commandString)
+        protected override bool ValidateCommand(string commandString)
         {
             if (!base.ValidateCommand(commandString))
                 return false;

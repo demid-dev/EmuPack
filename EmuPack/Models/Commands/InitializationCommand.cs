@@ -16,7 +16,7 @@ namespace EmuPack.Models.Commands
             Console.WriteLine(CommandId + SendFrom + SendTo + DataLength);
         }
 
-        public override bool ValidateCommand(string commandString)
+        protected override bool ValidateCommand(string commandString)
         {
             if (!base.ValidateCommand(commandString))
                 return false;

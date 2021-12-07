@@ -31,12 +31,12 @@ namespace EmuPack.Models.Commands
                 CommandValues.DataLengthLength);
         }
 
-        public virtual string ReadCommandField(string commandString, int startIndex, int length)
+        protected virtual string ReadCommandField(string commandString, int startIndex, int length)
         {
             return string.Join("", commandString.Skip(startIndex).Take(length));
         }
 
-        public virtual bool ValidateCommand(string commandString)
+        protected virtual bool ValidateCommand(string commandString)
         {
             if (SendFrom != CommandValues.SendFrom)
                 return false;

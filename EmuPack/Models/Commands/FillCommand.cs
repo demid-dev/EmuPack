@@ -70,7 +70,7 @@ namespace EmuPack.Models.Commands
             return new FillCommandResponse(CommandResponseCodes.Sucess);
         }
 
-        public override bool ValidateCommand(string commandString)
+        protected override bool ValidateCommand(string commandString)
         {
             if (!base.ValidateCommand(commandString))
                 return false;

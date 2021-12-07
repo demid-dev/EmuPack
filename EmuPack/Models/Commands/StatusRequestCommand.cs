@@ -14,7 +14,7 @@ namespace EmuPack.Models.Commands
             IsCommandValid = ValidateCommand(commandString);
         }
 
-        public override bool ValidateCommand(string commandString)
+        protected override bool ValidateCommand(string commandString)
         {
             if (!base.ValidateCommand(commandString))
                 return false;
