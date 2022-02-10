@@ -50,6 +50,8 @@ namespace EmuPack.Models.Commands
     {
         public string DrawerStatus { get; private set; }
         public string AdaptorStatus { get; private set; }
+        public string RegistredPrescriptionsQuantity { get; private set; }
+        public string RegistredPrescriptionsIds { get; private set; }
         public string WarningCassettesQuantity { get; private set; }
         public string WarningCassettesIds { get; private set; }
 
@@ -64,6 +66,17 @@ namespace EmuPack.Models.Commands
             }
             DrawerStatus = Convert.ToInt32(machineState.DrawerOpened).ToString();
             AdaptorStatus = Convert.ToInt32(machineState.Adaptor.AdaptorInsideMachine).ToString();
+            RegistredPrescriptionsQuantity = PadWithZeroes(machineState.RegistredPrescriptions.Count.ToString(),
+                StatusRequestCommandResposneValues.RegistredPrescriptionsQuantityLength);
+
+            RegistredPrescriptionsIds = string.Join("",
+                machineState.RegistredPrescriptions
+                    .Select(pr =>
+                        {
+                            return PadWithZeroes(pr.Id.ToString(),
+                                PrescriptionRegistrationCommandValues.PrescriptionIdLength);
+                        }));
+
             WarningCassettesQuantity = PadWithZeroes(machineState.WarningCassettesIds.Count.ToString(),
                 StatusRequestCommandResposneValues.WarningCassettesQuantityLength);
             WarningCassettesIds = string.Join("", machineState.WarningCassettesIds);
@@ -75,6 +88,8 @@ namespace EmuPack.Models.Commands
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.Append(DrawerStatus);
             stringBuilder.Append(AdaptorStatus);
+            stringBuilder.Append(RegistredPrescriptionsQuantity);
+            stringBuilder.Append(RegistredPrescriptionsIds);
             stringBuilder.Append(WarningCassettesQuantity);
             stringBuilder.Append(WarningCassettesIds);
             DataLength = PadWithZeroes((stringBuilder.Length + ResponseCode.Length).ToString(),
@@ -98,10 +113,13 @@ namespace EmuPack.Models.Commands
         static class StatusRequestCommandResposneValues
         {
             static public string DataLengthWrong { get; private set; }
+            static public int RegistredPrescriptionsQuantityLength { get; private set; }
             static public int WarningCassettesQuantityLength { get; private set; }
+
 
             static StatusRequestCommandResposneValues()
             {
+                RegistredPrescriptionsQuantityLength = 2;
                 WarningCassettesQuantityLength = 2;
                 DataLengthWrong = "00002";
             }
