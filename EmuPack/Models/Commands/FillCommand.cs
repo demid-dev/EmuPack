@@ -169,7 +169,8 @@ namespace EmuPack.Models.Commands
 
                 allCassettesQuantityOfDrugsValid = allCassettesQuantityOfDrugsValid && validDrugsQuantity;
 
-                if (!validDrugsQuantity)
+                if (!validDrugsQuantity && !machineState.WarningCassettesIds
+                        .Any(cassetteId => cassetteId == cassette.CassetteID))
                     machineState.WarningCassettesIds.Add(cassette.CassetteID);
             });
             if (!allCassettesQuantityOfDrugsValid)
@@ -253,7 +254,6 @@ namespace EmuPack.Models.Commands
         static public int QuantityOfDrugMaxValue { get; private set; }
         static public int QuantityOfDrugStartIndex { get; private set; }
         static public int QuantityOfDrugLength { get; private set; }
-        static public int ExecutionTime { get; private set; }
 
         static FillCommandValues()
         {
@@ -290,7 +290,6 @@ namespace EmuPack.Models.Commands
             QuantityOfDrugMaxValue = 99;
             QuantityOfDrugStartIndex = 24;
             QuantityOfDrugLength = 2;
-            ExecutionTime = 5000;
         }
     }
 
