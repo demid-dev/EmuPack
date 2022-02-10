@@ -7,9 +7,9 @@ namespace EmuPack.Models.Machine
 {
     public class MachineState
     {
-        public List<RegistredPrescription> RegistredPrescriptions { get; private set; }
         public bool DrawerOpened { get; private set; }
         public Adaptor Adaptor { get; private set; }
+        public List<RegistredPrescription> RegistredPrescriptions { get; private set; }
         public List<string> WarningCassettesIds { get; private set; }
 
         public MachineState()
