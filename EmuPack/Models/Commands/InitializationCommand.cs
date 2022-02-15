@@ -12,8 +12,6 @@ namespace EmuPack.Models.Commands
         public InitializationCommand(string commandString) : base(commandString)
         {
             IsCommandValid = ValidateCommand(commandString);
-            Console.WriteLine(IsCommandValid);
-            Console.WriteLine(CommandId + SendFrom + SendTo + DataLength);
         }
 
         protected override bool ValidateCommand(string commandString)
