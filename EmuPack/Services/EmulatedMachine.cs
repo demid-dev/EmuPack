@@ -2,6 +2,7 @@
 using EmuPack.Models.Machine;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -65,7 +66,7 @@ namespace EmuPack.Services
                     string response = GetResponseFromProcessedMessage(message);
                     _stream.Write(Encoding.ASCII.GetBytes(response), 0, response.Length);
                 }
-            }
+        }
             catch (Exception ex)
             {
             }
