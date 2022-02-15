@@ -27,9 +27,7 @@ namespace EmuPack.Models.Commands
 
             string command = CommandId + SendFrom + SendTo + DataLength
             + DataStartNotification + DrawerStatus + ClearingWarningsInitiated;
-            Console.WriteLine(command);
             IsCommandValid = ValidateCommand(commandString);
-            Console.WriteLine("Is command valid: " + IsCommandValid);
         }
 
         protected override bool ValidateCommand(string commandString)
