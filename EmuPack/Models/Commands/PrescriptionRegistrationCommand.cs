@@ -36,10 +36,7 @@ namespace EmuPack.Models.Commands
                 command += drug.CassetteId + drug.DrugName + drug.QuantityPerCassette;
             });
 
-            Console.WriteLine(command);
-
             IsCommandValid = ValidateCommand(commandString);
-            Console.WriteLine("Valid: " + IsCommandValid);
         }
 
         public override CommandResponse Execute(MachineState machineState)
