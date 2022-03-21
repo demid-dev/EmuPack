@@ -7,13 +7,15 @@ import {DashboardComponent} from './pages/dashboard/dashboard.component';
 import {MainLayoutComponent} from './shared/components/main-layout/main-layout.component';
 import {HttpClientModule} from "@angular/common/http";
 import { MachineStateComponent } from './shared/components/machine-state/machine-state.component';
+import { MedicationNamePipe } from './shared/pipes/medication-name.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     MainLayoutComponent,
-    MachineStateComponent
+    MachineStateComponent,
+    MedicationNamePipe
   ],
   imports: [
     BrowserModule,

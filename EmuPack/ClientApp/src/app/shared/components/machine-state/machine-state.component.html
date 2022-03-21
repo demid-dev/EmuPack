@@ -57,7 +57,7 @@
           </li>
           <li class="list-group-item">Registered medications:
             <span class="machine-state-value" *ngFor="let cassette of this.selectedPrescription.registredCassettes">
-              {{cassette.drugName}} (cassette: {{cassette.cassetteId}}, left drugs quantity {{cassette.drugQuantity}})
+              {{cassette.drugName | medicationName}} (cassette: {{cassette.cassetteId}}, left drugs quantity {{cassette.drugQuantity}})
             </span>
           </li>
         </ul>
