@@ -31,7 +31,7 @@
   </li>
   <li class="list-group-item">Warning cassettes ID's:
     <span *ngFor="let prescription of machineState.warningCassettesIds"
-       class="machine-state-value">
+          class="machine-state-value">
       {{prescription}}
     </span>
     <span *ngIf="machineState.warningCassettesIds.length == 0"
@@ -39,3 +39,35 @@
     </span>
   </li>
 </ul>
+
+<button type="button" data-bs-toggle="modal" data-bs-target="#prescriptionModal" #prescriptionModalButton hidden>
+</button>
+
+<div class="modal fade" id="prescriptionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Prescription details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <ul class="list-group">
+          <li class="list-group-item">Registered prescription ID:
+            <span class="machine-state-value">{{this.selectedPrescription.id}}</span>
+          </li>
+          <li class="list-group-item">Registered medications:
+            <span class="machine-state-value" *ngFor="let cassette of this.selectedPrescription.registredCassettes">
+              {{cassette.drugName}} (cassette: {{cassette.cassetteId}}, left drugs quantity {{cassette.drugQuantity}})
+            </span>
+          </li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {MachineState} from "../../models/machine-state";
+import {MachineState, RegistredPrescription} from "../../models/machine-state";
 import {MachineStateService} from "../../services/machine-state.service";
 
 @Component({
@@ -10,6 +10,10 @@ import {MachineStateService} from "../../services/machine-state.service";
 export class MachineStateComponent implements OnInit {
   // @ts-ignore
   public machineState: MachineState;
+  // @ts-ignore
+  public selectedPrescription: RegistredPrescription | undefined;
+  // @ts-ignore
+  @ViewChild('prescriptionModalButton') prescriptionModalButton: ElementRef<HTMLElement>;
 
   constructor(private machineStateService: MachineStateService) {
   }
@@ -25,4 +29,14 @@ export class MachineStateComponent implements OnInit {
     })
   }
 
+  getPrescriptionDetails(prescriptionId: number): void {
+    this.selectedPrescription = this.machineState.registredPrescriptions
+      .find(prescription => prescription.id == prescriptionId);
+
+    this.openPrescriptionModal();
+  }
+
+  openPrescriptionModal(): void {
+    this.prescriptionModalButton.nativeElement.click();
+  }
 }
