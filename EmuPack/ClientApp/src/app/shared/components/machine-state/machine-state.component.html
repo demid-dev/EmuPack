@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-6">
+    <p class="heading">Machine state</p>
+  </div>
+  <div class="col-2">
+    <button type="button" class="btn dispensing-btn" (click)="refreshMachineState()">Refresh machine state</button>
+  </div>
+  <div class="col-2">
+    <button type="button" class="btn dispensing-btn">Change adaptor state</button>
+  </div>
+  <div class="col-2">
+    <button type="button" class="btn dispensing-btn">Clear drug pack</button>
+  </div>
+</div>
+
+<hr class="machine-state-divider"/>
+
+<ul class="list-group">
+  <li class="list-group-item">Adaptor state inside the drawer: <span
+    class="machine-state-value">{{this.machineState.adaptor.adaptorInsideMachine}}</span></li>
+  <li class="list-group-item">Drawer locked: <span class="machine-state-value">{{this.machineState.drawerLocked}}</span>
+  </li>
+  <li class="list-group-item">Registered prescriptions ID's:
+    <a *ngFor="let prescription of machineState.registredPrescriptions"
+       class="machine-state-value">
+      {{prescription.id}}
+    </a>
+    <span *ngIf="machineState.registredPrescriptions.length == 0"
+          class="machine-state-value">none prescriptions were registered
+    </span>
+  </li>
+  <li class="list-group-item">Warning cassettes ID's:
+    <span *ngFor="let prescription of machineState.warningCassettesIds"
+       class="machine-state-value">
+      {{prescription}}
+    </span>
+    <span *ngIf="machineState.warningCassettesIds.length == 0"
+          class="machine-state-value">none cassettes are warning
+    </span>
+  </li>
+</ul>

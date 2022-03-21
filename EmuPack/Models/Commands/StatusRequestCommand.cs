@@ -64,7 +64,7 @@ namespace EmuPack.Models.Commands
                 DataLength = StatusRequestCommandResposneValues.DataLengthWrong;
                 return;
             }
-            DrawerStatus = Convert.ToInt32(machineState.DrawerOpened).ToString();
+            DrawerStatus = Convert.ToInt32(machineState.DrawerLocked).ToString();
             AdaptorStatus = Convert.ToInt32(machineState.Adaptor.AdaptorInsideMachine).ToString();
             RegistredPrescriptionsQuantity = PadWithZeroes(machineState.RegistredPrescriptions.Count.ToString(),
                 StatusRequestCommandResposneValues.RegistredPrescriptionsQuantityLength);

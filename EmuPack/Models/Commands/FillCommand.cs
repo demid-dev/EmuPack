@@ -140,7 +140,7 @@ namespace EmuPack.Models.Commands
             RegistredPrescription registredPrescription = machineState.RegistredPrescriptions
                 .Find(prescription => prescription.Id == prescriptionId);
 
-            if (machineState.DrawerOpened || !machineState.Adaptor.AdaptorInsideMachine)
+            if (machineState.DrawerLocked || !machineState.Adaptor.AdaptorInsideMachine)
                 return false;
 
             if (registredPrescription == null)

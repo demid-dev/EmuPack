@@ -7,7 +7,7 @@ namespace EmuPack.Models.Machine
 {
     public class MachineState
     {
-        public bool DrawerOpened { get; private set; }
+        public bool DrawerLocked { get; private set; }
         public Adaptor Adaptor { get; private set; }
         public List<RegistredPrescription> RegistredPrescriptions { get; private set; }
         public List<string> WarningCassettesIds { get; private set; }
@@ -17,19 +17,19 @@ namespace EmuPack.Models.Machine
             Adaptor = new Adaptor();
             RegistredPrescriptions = new List<RegistredPrescription>();
             WarningCassettesIds = new List<string>();
-            DrawerOpened = false;
+            DrawerLocked = false;
         }
 
         public void ReinitilizeState()
         {
             RegistredPrescriptions = new List<RegistredPrescription>();
-            DrawerOpened = false;
+            DrawerLocked = false;
             WarningCassettesIds = new List<string>();
         }
 
         public void ChangeDrawerStatus(bool opened)
         {
-            DrawerOpened = opened;
+            DrawerLocked = opened;
         }
 
         public void ClearWarningCassettesIds()
