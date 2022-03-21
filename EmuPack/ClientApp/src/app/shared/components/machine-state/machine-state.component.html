@@ -17,7 +17,7 @@
 
 <ul class="list-group">
   <li class="list-group-item">Adaptor state inside the drawer: <span
-    class="machine-state-value">{{this.machineState.adaptor.adaptorInsideMachine}}</span></li>
+    class="machine-state-value">{{this.machineState.adaptor?.adaptorInsideMachine}}</span></li>
   <li class="list-group-item">Drawer locked: <span class="machine-state-value">{{this.machineState.drawerLocked}}</span>
   </li>
   <li class="list-group-item">Registered prescriptions ID's:
@@ -53,10 +53,10 @@
       <div class="modal-body">
         <ul class="list-group">
           <li class="list-group-item">Registered prescription ID:
-            <span class="machine-state-value">{{this.selectedPrescription.id}}</span>
+            <span class="machine-state-value">{{this.selectedPrescription?.id}}</span>
           </li>
           <li class="list-group-item">Registered medications:
-            <span class="machine-state-value" *ngFor="let cassette of this.selectedPrescription.registredCassettes">
+            <span class="machine-state-value" *ngFor="let cassette of this.selectedPrescription?.registredCassettes">
               {{cassette.drugName | medicationName}} (cassette: {{cassette.cassetteId}}, left drugs quantity {{cassette.drugQuantity}})
             </span>
           </li>

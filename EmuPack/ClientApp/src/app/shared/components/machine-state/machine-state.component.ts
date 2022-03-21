@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {MachineState, RegistredPrescription} from "../../models/machine-state";
 import {MachineStateService} from "../../services/machine-state.service";
 
@@ -12,6 +12,7 @@ export class MachineStateComponent implements OnInit {
   public machineState: MachineState;
   // @ts-ignore
   public selectedPrescription: RegistredPrescription | undefined;
+
   // @ts-ignore
   @ViewChild('prescriptionModalButton') prescriptionModalButton: ElementRef<HTMLElement>;
 
@@ -24,7 +25,6 @@ export class MachineStateComponent implements OnInit {
 
   refreshMachineState(): void {
     this.machineStateService.getMachineState().subscribe(state => {
-      console.log(state);
       this.machineState = state;
     })
   }
