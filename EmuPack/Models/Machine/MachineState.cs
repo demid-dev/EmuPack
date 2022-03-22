@@ -27,9 +27,9 @@ namespace EmuPack.Models.Machine
             WarningCassettesIds = new List<string>();
         }
 
-        public void ChangeDrawerStatus(bool opened)
+        public void ChangeDrawerStatus(bool drawerLocked)
         {
-            DrawerLocked = opened;
+            DrawerLocked = drawerLocked;
         }
 
         public void ClearWarningCassettesIds()

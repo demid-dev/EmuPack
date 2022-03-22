@@ -21,18 +21,18 @@
   <li class="list-group-item">Drawer locked: <span class="machine-state-value">{{this.machineState.drawerLocked}}</span>
   </li>
   <li class="list-group-item">Registered prescriptions ID's:
-    <a *ngFor="let prescription of machineState.registredPrescriptions"
-       class="machine-state-value">
-      {{prescription.id}}
-    </a>
+    <span *ngFor="let prescription of machineState.registredPrescriptions; let idx = index">
+      <a (click)="getPrescriptionDetails(prescription.id)" class="machine-state-value">{{prescription.id}}</a>
+      <span *ngIf="idx != machineState.registredPrescriptions.length - 1">, </span>
+    </span>
     <span *ngIf="machineState.registredPrescriptions.length == 0"
           class="machine-state-value">none prescriptions were registered
     </span>
   </li>
   <li class="list-group-item">Warning cassettes ID's:
-    <span *ngFor="let prescription of machineState.warningCassettesIds"
+    <span *ngFor="let cassette of machineState.warningCassettesIds"
           class="machine-state-value">
-      {{prescription}}
+      {{cassette}}
     </span>
     <span *ngIf="machineState.warningCassettesIds.length == 0"
           class="machine-state-value">none cassettes are warning
@@ -56,8 +56,10 @@
             <span class="machine-state-value">{{this.selectedPrescription?.id}}</span>
           </li>
           <li class="list-group-item">Registered medications:
-            <span class="machine-state-value" *ngFor="let cassette of this.selectedPrescription?.registredCassettes">
-              {{cassette.drugName | medicationName}} (cassette: {{cassette.cassetteId}}, left drugs quantity {{cassette.drugQuantity}})
+            <span class="machine-state-value"
+                  *ngFor="let cassette of this.selectedPrescription?.registredCassettes; let idx = index;">
+              <span>{{cassette.drugName | medicationName}} (cassette: {{cassette.cassetteId}})</span>
+              <span *ngIf="(idx + 1) != this.selectedPrescription?.registredCassettes?.length">, </span>
             </span>
           </li>
         </ul>

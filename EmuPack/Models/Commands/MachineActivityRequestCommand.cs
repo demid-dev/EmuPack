@@ -51,11 +51,11 @@ namespace EmuPack.Models.Commands
                 return new MachineActivityRequestCommandResponse(CommandResponseCodes.WrongCommandFormat);
             if (DrawerStatus == MachineActivityRequestValues.DrawerStatusPossibleValues[0])
             {
-                machineState.ChangeDrawerStatus(false);
+                machineState.ChangeDrawerStatus(drawerLocked: true);
             }
             else
             {
-                machineState.ChangeDrawerStatus(true);
+                machineState.ChangeDrawerStatus(drawerLocked: false);
             }
             if (DrawerStatus == MachineActivityRequestValues.ClearingWarningsInitiatedPossibleValues[1])
             {
