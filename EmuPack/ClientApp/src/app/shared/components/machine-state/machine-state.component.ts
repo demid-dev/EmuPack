@@ -12,9 +12,10 @@ export class MachineStateComponent implements OnInit {
   public machineState: MachineState;
   // @ts-ignore
   public selectedPrescription: RegistredPrescription | undefined;
-
   // @ts-ignore
   @ViewChild('prescriptionModalButton') prescriptionModalButton: ElementRef<HTMLElement>;
+  // @ts-ignore
+  public machineStateRefreshedTime: string;
 
   constructor(private machineStateService: MachineStateService) {
   }
@@ -26,7 +27,9 @@ export class MachineStateComponent implements OnInit {
   refreshMachineState(): void {
     this.machineStateService.getMachineState().subscribe(state => {
       this.machineState = state;
-    })
+    });
+
+    this.machineStateRefreshedTime = Date.now().toString();
   }
 
   getPrescriptionDetails(prescriptionId: number): void {
@@ -38,5 +41,13 @@ export class MachineStateComponent implements OnInit {
 
   openPrescriptionModal(): void {
     this.prescriptionModalButton.nativeElement.click();
+  }
+
+  changeAdaptorState(): void {
+
+  }
+
+  clearDrugPack(): void {
+
   }
 }
