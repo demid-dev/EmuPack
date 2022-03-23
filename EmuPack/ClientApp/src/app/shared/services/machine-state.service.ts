@@ -15,4 +15,12 @@ export class MachineStateService {
   public getMachineState(): Observable<MachineState> {
     return this.http.get<MachineState>(`${environment.api}/Emulator`);
   }
+
+  public changeAdaptorState(): Observable<void> {
+    return this.http.post<void>(`${environment.api}/Emulator/adaptor`, null);
+  }
+
+  public clearDrugPack(): Observable<void> {
+    return this.http.post<void>(`${environment.api}/Emulator/pack`, null);
+  }
 }

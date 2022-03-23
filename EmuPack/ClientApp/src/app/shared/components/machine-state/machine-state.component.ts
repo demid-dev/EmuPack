@@ -44,10 +44,13 @@ export class MachineStateComponent implements OnInit {
   }
 
   changeAdaptorState(): void {
-
+    this.machineStateService.changeAdaptorState().subscribe();
+    this.refreshMachineState();
   }
 
-  clearDrugPack(): void {
 
+  clearDrugPack(): void {
+    this.machineStateService.clearDrugPack().subscribe();
+    this.refreshMachineState();
   }
 }

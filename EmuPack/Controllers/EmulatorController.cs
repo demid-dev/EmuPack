@@ -44,7 +44,7 @@ namespace EmuPack.Controllers
         [HttpPost("adaptor")]
         public ActionResult ChangeAdaptorState()
         {
-            if (!_emulatedMachine.MachineState.DrawerLocked)
+            if (_emulatedMachine.MachineState.DrawerLocked)
             {
                 return BadRequest("Adaptor state cannot be changed, machine drawer closed");
             }
@@ -55,7 +55,7 @@ namespace EmuPack.Controllers
         [HttpPost("pack")]
         public ActionResult ChangeDrugPack()
         {
-            if (!_emulatedMachine.MachineState.DrawerLocked)
+            if (_emulatedMachine.MachineState.DrawerLocked)
             {
                 return BadRequest("Drug pack cannot be cleared, machine drawer closed");
             }
