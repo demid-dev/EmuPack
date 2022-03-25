@@ -1,5 +1,6 @@
 ﻿using EmuPack.Models.Commands;
 using EmuPack.Models.Machine;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -14,6 +15,8 @@ namespace EmuPack.Services
 {
     public class EmulatedMachine
     {
+        private readonly ILogger<EmulatedMachine> _logger;
+
         private TcpClient _client;
         private NetworkStream _stream;
         private TcpListener _listener;
@@ -21,8 +24,10 @@ namespace EmuPack.Services
 
         public MachineState MachineState { get; private set; }
 
-        public EmulatedMachine()
+        public EmulatedMachine(ILogger<EmulatedMachine> logger)
         {
+            _logger = logger;
+
             _commandHandler = new CommandHandler();
             MachineState = new MachineState();
 
@@ -63,10 +68,12 @@ namespace EmuPack.Services
                     while (_stream.DataAvailable);
 
                     string message = builder.ToString();
+                    _logger.LogInformation($"Receive command: {message}");
                     string response = GetResponseFromProcessedMessage(message);
                     _stream.Write(Encoding.ASCII.GetBytes(response), 0, response.Length);
+                    _logger.LogInformation($"Send command: {response}");
                 }
-        }
+            }
             catch (Exception ex)
             {
             }
