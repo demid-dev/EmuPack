@@ -49,7 +49,7 @@ namespace EmuPack.Controllers
                 return BadRequest("Adaptor state cannot be changed, machine drawer closed");
             }
             _emulatedMachine.MachineState.Adaptor.ChangeAdaptorState();
-            return Ok(_emulatedMachine.MachineState.Adaptor);
+            return Ok(_emulatedMachine.MachineState);
         }
 
         [HttpPost("pack")]
@@ -60,7 +60,7 @@ namespace EmuPack.Controllers
                 return BadRequest("Drug pack cannot be cleared, machine drawer closed");
             }
             _emulatedMachine.MachineState.Adaptor.ClearDrugPack();
-            return Ok(_emulatedMachine.MachineState.Adaptor);
+            return Ok(_emulatedMachine.MachineState);
         }
     }
 }

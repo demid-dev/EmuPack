@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {MachineState, RegistredPrescription} from "../../models/machine-state";
+import {Adaptor, DrugCell, DrugPack, MachineState, RegistredPrescription} from "../../models/machine-state";
 import {MachineStateService} from "../../services/machine-state.service";
 
 @Component({
@@ -9,7 +9,17 @@ import {MachineStateService} from "../../services/machine-state.service";
 })
 export class MachineStateComponent implements OnInit {
   // @ts-ignore
-  public machineState: MachineState;
+  public machineState: MachineState = new class implements MachineState {
+    adaptor: Adaptor = new class implements Adaptor {
+      adaptorInsideMachine: boolean = false;
+      drugPack: DrugPack = new class implements DrugPack {
+        drugCells: DrugCell[] = [];
+      };
+    };
+    drawerLocked: boolean = false;
+    registredPrescriptions: RegistredPrescription[] = [];
+    warningCassettesIds: string[] = [];
+  };
   // @ts-ignore
   public selectedPrescription: RegistredPrescription | undefined;
   // @ts-ignore
@@ -18,6 +28,7 @@ export class MachineStateComponent implements OnInit {
   public machineStateRefreshedTime: string;
 
   constructor(private machineStateService: MachineStateService) {
+
   }
 
   ngOnInit(): void {
@@ -26,6 +37,7 @@ export class MachineStateComponent implements OnInit {
 
   refreshMachineState(): void {
     this.machineStateService.getMachineState().subscribe(state => {
+      console.log(state);
       this.machineState = state;
     });
 
@@ -44,13 +56,15 @@ export class MachineStateComponent implements OnInit {
   }
 
   changeAdaptorState(): void {
-    this.machineStateService.changeAdaptorState().subscribe();
-    this.refreshMachineState();
+    this.machineStateService.changeAdaptorState().subscribe(state => {
+      this.machineState = state;
+    });
   }
 
 
   clearDrugPack(): void {
-    this.machineStateService.clearDrugPack().subscribe();
-    this.refreshMachineState();
+    this.machineStateService.clearDrugPack().subscribe(state => {
+      this.machineState = state;
+    });
   }
 }

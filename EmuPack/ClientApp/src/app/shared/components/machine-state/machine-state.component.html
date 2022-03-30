@@ -119,7 +119,7 @@
             <span class="machine-state-value"
                   *ngFor="let cassette of this.selectedPrescription?.registredCassettes; let idx = index;">
               <span>{{cassette.drugName | medicationName}} (cassette: {{cassette.cassetteId}})</span>
-              <span *ngIf="(idx + 1) != this.selectedPrescription?.registredCassettes?.length">,</span>
+              <span *ngIf="(idx + 1) != this.selectedPrescription?.registredCassettes?.length">, </span>
             </span>
           </li>
         </ul>
